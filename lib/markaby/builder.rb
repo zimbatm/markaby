@@ -276,8 +276,10 @@ module Markaby
       @transformed_stream = false
     end
 
-    if RUBY_VERSION_ID >= 191
-      undef_method :to_s, :inspect, :==
+    if RUBY_VERSION_ID >= 191 && RUBY_VERSION_ID < 192
+      [:to_s, :inspect, :==].each do |method|
+        undef_method method if method_defined? method
+      end
     end
 
   private
