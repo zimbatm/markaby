@@ -2,6 +2,11 @@ require 'rake'
 require 'spec/rake/spectask'
 require 'rake/clean'
 
+unless $:.include? '.'
+  $:.unshift '.'
+  ENV['RUBYOPT'] = ENV['RUBYOPT'].to_s + " -I."
+end
+
 begin
   require 'hanna/rdoctask'
 

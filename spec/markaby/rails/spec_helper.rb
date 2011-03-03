@@ -1,3 +1,6 @@
+if defined? RUBY_VERSION && RUBY_VERSION > "1.9"
+  gem 'test-unit', '1.2.3'
+end
 require 'test/unit'
 
 unless defined?(RUNNING_RAILS)
