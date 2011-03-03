@@ -198,26 +198,27 @@ module Markaby
 
     @doctype = ['html']
     @tagset = XHTMLTransitional.tagset.merge({
-        :abbr => Attrs,
-        :article => Attrs,
-        :aside => Attrs,
-        :audio => Attrs,
-        :canvas => Attrs,
+        :abbr     => Attrs,
+        :article  => Attrs,
+        :aside    => Attrs,
+        :audio    => Attrs,
+        :canvas   => Attrs,
         :datalist => Attrs,
-        :details => Attrs,
-        :figure => Attrs,
-        :footer => Attrs,
-        :header => Attrs,
-        :hgroup => Attrs,
-        :mark => Attrs,
-        :menu => Attrs,
-        :meter => Attrs,
-        :nav => Attrs,
-        :output => Attrs,
+        :details  => Attrs,
+        :figure   => Attrs,
+        :footer   => Attrs,
+        :header   => Attrs,
+        :hgroup   => Attrs,
+        :mark     => Attrs,
+        :menu     => Attrs,
+        :meta     => XHTMLTransitional.tagset[:meta] + [:charset],
+        :meter    => Attrs,
+        :nav      => Attrs,
+        :output   => Attrs,
         :progress => Attrs,
-        :section => Attrs,
-        :time => Attrs,
-        :video => Attrs
+        :section  => Attrs,
+        :time     => Attrs,
+        :video    => Attrs
     })
 
     @tags = @tagset.keys
