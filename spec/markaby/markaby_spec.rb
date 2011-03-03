@@ -164,6 +164,14 @@ describe Markaby do
     assert doc.include?(%{<title>OKay</title>})
   end
 
+  def test_full_doc_html5
+    doc = mab { html5 { head { title 'OKay' } } }
+    assert doc =~ /^<!DOCTYPE html>/
+    assert doc !~ /xmlns/
+    assert doc.include?(%{<title>OKay</title>})
+  end
+
+
   def test_root_attributes_can_be_changed
     doc = mab { xhtml_strict(:lang => 'fr') { head { title { 'Salut!' } } } }
     assert doc.include?(%{"-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">})
