@@ -171,6 +171,14 @@ describe Markaby do
     assert doc.include?(%{<title>OKay</title>})
   end
 
+  def test_html5_data_attributes
+    doc = mab do
+      html5 do
+        input :"data-foo"=>5
+      end
+    end
+    assert doc.include?(%{<input data-foo="5"/>})
+  end
 
   def test_root_attributes_can_be_changed
     doc = mab { xhtml_strict(:lang => 'fr') { head { title { 'Salut!' } } } }
