@@ -28,7 +28,13 @@ module Markaby
     # set to <tt>text/html; charset=utf-8</tt>.
     def head(*args, &block)
       tag!(:head, *args) do
-        tag!(:meta, "http-equiv" => "Content-Type", "content" => "text/html; charset=utf-8") if @output_meta_tag
+        if @output_meta_tag
+          if @tagset == Markaby::HTML5
+            tag!(:meta, "charset" => "utf-8")
+          else
+            tag!(:meta, "http-equiv" => "Content-Type", "content" => "text/html; charset=utf-8")
+          end
+        end
         instance_eval(&block)
       end
     end
@@ -51,6 +57,15 @@ module Markaby
     def xhtml_frameset(attrs = {}, &block)
       self.tagset = Markaby::XHTMLFrameset
       xhtml_html(attrs, &block)
+    end
+
+    def html5(attrs = {}, &block)
+      self.tagset = Markaby::HTML5
+      declare!(:DOCTYPE, :html)
+      root_attrs = @root_attributes.dup
+      root_attrs.delete :xmlns
+      root_attrs.delete :'xml:lang'
+      tag!(:html, root_attrs.merge(attrs), &block)
     end
 
   private
